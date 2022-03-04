@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import Question from "./components/Question.js"
+import {useState, useEffect} from "react"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+  const [start, setStart] = useState(true)
+  const [triviaData, setTriviaData] = useState([])
+
+  useEffect(() => {
+    fetch('https://opentdb.com/api.php?amount=5&category=19&difficulty=easy&type=multiple')
+    .then(response => response.json())
+    .then(data => setTriviaData(data.results));
+
+    return () => setTriviaData([]);
+  }, [])
+  
+  function handleStart() {
+    setStart(false)
+  }
+  return(
+    <main className={`quiz${!start ? " active" : ""}`}>
+      {
+        start
+        ?
+        <>
+          <h1 className="quiz__header quiz__header--main">Quizzical</h1>
+          <p className="quiz__description">Some description if needed</p>
+          <button 
+            onClick={handleStart}
+            className="quiz__button"
+          >
+            Start quiz
+          </button>
+        </>
+        :
+        <div className="quiz__question">
+          <Question />
+        </div>
+      }
+    </main>
+
+  )
 }
-
-export default App;
