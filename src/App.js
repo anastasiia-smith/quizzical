@@ -1,5 +1,6 @@
 import Question from './components/Question.js';
 import { useState, useEffect } from 'react';
+import he from 'he';
 
 export default function App() {
   const [start, setStart] = useState(true);
@@ -17,11 +18,12 @@ export default function App() {
 
   const questions = triviaData.map((item, index) => {
     const answers = item.incorrect_answers.concat(item.correct_answer);
+    const decodedAnswers = answers.map(item => he.decode(item));
     return (
       <Question
         key={index}
-        question={item.question}
-        answers={answers}
+        question={he.decode(item.question)}
+        answers={decodedAnswers}
         index={index}
       />
     );
