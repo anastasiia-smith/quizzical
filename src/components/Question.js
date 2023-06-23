@@ -1,13 +1,28 @@
-export default function Quiz(props) {
-  return(
-      
-    <div className="question__body">
-      <h2 className="quiz__header quiz__header--sub">How would one say goodbye in Spanish?</h2>
-      Adiós
-      Hola
-      Au Revoir
-      Salir
-    </div>
+import { useState } from 'react';
 
-  )
+export default function Question(props) {
+  const [value, setValue] = useState('');
+  function changeValue(event) {
+    setValue(event.target.value);
+  }
+  return (
+    <fieldset className='questions__group'>
+      <legend className='questions__header header'>
+        {props.question}
+      </legend>
+      {props.answers.map((item) => (
+        <label className='questions__label' key={item}>
+          <input
+            className='questions__input'
+            type='radio'
+            name={'radio-' + props.index}
+            value={item}
+            checked={value == {item} ? true : false}
+            onChange={changeValue}
+          />
+          {item}
+        </label>
+      ))}
+    </fieldset>
+  );
 }
