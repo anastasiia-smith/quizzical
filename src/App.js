@@ -5,44 +5,29 @@ import he from 'he';
 export default function App() {
   const [start, setStart] = useState(true);
   const [triviaData, setTriviaData] = useState([]);
-  const [check, setCheck] = useState(true);
-
   useEffect(() => {
     fetch('https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple')
       .then((response) => response.json())
-      .then((data) => setTriviaData(data.results));
+      .then((data) => {
+        const extractedCategories = data.results.map((obj, index) => ({
+          id: index,
+          question: he.decode(obj.question),
+          correct_answer: he.decode(obj.correct_answer),
+          answers: shuffle([...obj.incorrect_answers, obj.correct_answer].map(item => he.decode(item))),
+        }));
+        setTriviaData(extractedCategories);
+      });
     return () => setTriviaData([]);
   }, []);
 
-  const questions = triviaData.map((item, index) => {
-    const answers = item.incorrect_answers.concat(item.correct_answer);
-    const decodedAnswers = answers.map((item) => he.decode(item));
-
-    return (
-      <Questions
-        key={index}
-        question={he.decode(item.question)}
-        correctAnswer={item.correct_answer}
-        answers={shuffle(decodedAnswers)}
-        index={index}
-      />
-    );
-  });
-
   function handleStart() {
-    // TODO
     setStart(false);
   }
 
-  function handleCheck() {
-    // TODO
-    setCheck(false);
+  function handleNewStart() {
+    window.location.reload();
   }
 
-  function handleNewStart() {
-    // TODO
-    setStart(true);
-  }
   return (
     <main className={`quiz${!start ? ' active' : ''}`}>
       {start ? (
@@ -55,21 +40,7 @@ export default function App() {
         </>
       ) : (
         <>
-          <div className='quiz__questions'>{questions}</div>
-          <div className='quiz__footer'>
-            {check ? (
-              <button onClick={handleCheck} className='quiz__button'>
-                Check answers
-              </button>
-            ) : (
-              <>
-                <p className='score'>You scored 3/5 correct answers</p>
-                <button onClick={handleNewStart} className='quiz__button'>
-                  Play again
-                </button>
-              </>
-            )}
-          </div>
+          <Questions triviaData={triviaData} handleNewStart={handleNewStart} />
         </>
       )}
     </main>
@@ -92,6 +63,5 @@ function shuffle(array) {
       array[currentIndex],
     ];
   }
-
   return array;
 }

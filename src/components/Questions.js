@@ -1,15 +1,41 @@
-import Option from './Answer';
+import Question from './Question.js';
+import { useState } from 'react';
 
-export default function Questions(props) {
-  const options = props.answers.map((item, index)=> {
+export default function Questions({ triviaData, handleNewStart }) {
+  const [check, setCheck] = useState(true);
+
+  function handleCheck() {
+    // TODO check
+    setCheck(false);
+  }
+  const questions = triviaData.map((item) => {
     return (
-      <Option key={index} index={index} answer={item} />
+      <Question
+        key={item.id}
+        question={item.question}
+        correctAnswer={item.correct_answer}
+        answers={item.answers}
+        id={item.id}
+      />
     );
-  })
+  });
   return (
-    <fieldset className='question__group'>
-      <legend className='question__header header'>{props.question}</legend>
-      {options}
-    </fieldset>
+    <>
+      <div className='quiz__questions'>{questions}</div>
+      <div className='quiz__footer'>
+        {check ? (
+          <button onClick={handleCheck} className='quiz__button'>
+            Check answers
+          </button>
+        ) : (
+          <>
+            <p className='score'>You scored 3/5 correct answers</p>
+            <button onClick={handleNewStart} className='quiz__button'>
+              Play again
+            </button>
+          </>
+        )}
+      </div>
+    </>
   );
 }
