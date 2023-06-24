@@ -1,8 +1,8 @@
-import Answer from './Answer';
+import Option from './Option';
 
 export default function Questions(props) {
-  const options = props.answers.map((item, index) => {
-    return <Answer key={index} index={index} answer={item} />;
+  const options = props.options.map((option, optionIndex) => {
+    return <Option key={optionIndex} index={optionIndex} option={option} />;
   });
   return (
     <fieldset className='question__group'>

@@ -12,10 +12,10 @@ export default function Questions({ triviaData, handleNewStart }) {
     return (
       <Question
         key={item.id}
+        id={item.id}
         question={item.question}
         correctAnswer={item.correct_answer}
-        answers={item.answers}
-        id={item.id}
+        options={item.options}
       />
     );
   });

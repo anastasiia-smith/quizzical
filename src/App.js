@@ -13,7 +13,7 @@ export default function App() {
           id: index,
           question: he.decode(obj.question),
           correct_answer: he.decode(obj.correct_answer),
-          answers: shuffle([...obj.incorrect_answers, obj.correct_answer].map(item => he.decode(item))),
+          options: shuffle([...obj.incorrect_answers, obj.correct_answer].map(item => he.decode(item))),
         }));
         setTriviaData(extractedCategories);
       });
@@ -52,7 +52,7 @@ function shuffle(array) {
     randomIndex;
 
   // While there remain elements to shuffle.
-  while (currentIndex != 0) {
+  while (currentIndex !== 0) {
     // Pick a remaining element.
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;

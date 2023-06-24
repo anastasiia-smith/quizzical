@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 export default function Option(props) {
   return (
     <>
@@ -8,9 +6,9 @@ export default function Option(props) {
           className='question__input'
           type='radio'
           name={'radio-' + props.index}
-          value={props.answer}
+          value={props.option}
         />
-        {props.answer}
+        {props.option}
       </label>
     </>
   );
