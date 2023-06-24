@@ -100,7 +100,7 @@ body {
   margin: 1rem auto;
 }
 
-.questions__group {
+.question__group {
   display: flex;
   flex-direction: row;
   align-items: stretch;
@@ -109,12 +109,12 @@ body {
   margin-bottom: 0.95rem;
 }
 
-.questions__header {
+.question__header {
   font-size: 1rem;
   margin-bottom: 0.8rem;
 }
 
-.questions__label {
+.question__label {
   padding-right: 1rem;
   border-radius: 7.942px;
   border: 0.794px solid #4d5b9e;
@@ -123,12 +123,12 @@ body {
   margin-right: 0.8rem;
 }
 
-.questions__label:hover,
-.questions__label.checked {
+.question__label:hover,
+.question__label.checked {
   background-color: #d6dbf5;
   border-color: #d6dbf5;
 }
 
-.questions__input {
+.question__input {
   display: none;
 }
