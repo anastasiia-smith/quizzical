@@ -1,4 +1,5 @@
 import Question from './Question.js';
+import Button from './Button.js';
 import { useState } from 'react';
 
 export default function Questions({ triviaData, handleNewStart }) {
@@ -24,15 +25,15 @@ export default function Questions({ triviaData, handleNewStart }) {
       <div className='quiz__questions'>{questions}</div>
       <div className='quiz__footer'>
         {check ? (
-          <button onClick={handleCheck} className='quiz__button'>
+          <Button onClick={handleCheck} className='quiz__button'>
             Check answers
-          </button>
+          </Button>
         ) : (
           <>
             <p className='score'>You scored 3/5 correct answers</p>
-            <button onClick={handleNewStart} className='quiz__button'>
+            <Button onClick={handleNewStart} className='quiz__button'>
               Play again
-            </button>
+            </Button>
           </>
         )}
       </div>

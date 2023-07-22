@@ -1,4 +1,5 @@
 import Questions from './components/Questions.js';
+import Button from './components/Button.js';
 import { useState, useEffect } from 'react';
 import he from 'he';
 
@@ -34,9 +35,9 @@ export default function App() {
         <>
           <h1 className='quiz__header header'>Quizzical</h1>
           <p className='quiz__description'>Some description if needed</p>
-          <button onClick={handleStart} className='quiz__button'>
+          <Button onClick={handleStart} className='quiz__button'>
             Start quiz
-          </button>
+          </Button>
         </>
       ) : (
         <>
