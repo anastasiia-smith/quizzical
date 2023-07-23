@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 export default function Option({questionId, index, option, answers, handleSetAnswers}) {
-  const activeClass = answers[questionId] === option ? 'active' : '';
+  const activeClass = answers[questionId].answer === option ? 'active' : '';
   return (
     <>
       <label className={'question__label ' + activeClass}>

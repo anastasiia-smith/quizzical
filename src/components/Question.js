@@ -1,5 +1,4 @@
 import Option from './Option';
-import { useState } from 'react';
 
 export default function Questions({id, question, options, answers, handleSetAnswers}) {
   const optionsDisplay = options.map((option, optionIndex) => {
