@@ -29,6 +29,11 @@ export default function App() {
     window.location.reload();
   }
 
+  const correctAnswers = [];
+  triviaData.forEach(element => {
+    correctAnswers.push(element.correct_answer);
+  });
+
   return (
     <main className={`quiz${!start ? ' active' : ''}`}>
       {start ? (
@@ -41,7 +46,7 @@ export default function App() {
         </>
       ) : (
         <>
-          <Questions triviaData={triviaData} handleNewStart={handleNewStart} />
+          <Questions triviaData={triviaData} handleNewStart={handleNewStart} correctAnswers={correctAnswers}/>
         </>
       )}
     </main>

@@ -132,3 +132,8 @@ body {
 .question__input {
   display: none;
 }
+
+.question__label.active {
+  background-color: #4d5b9e;
+  color: #fff;
+}

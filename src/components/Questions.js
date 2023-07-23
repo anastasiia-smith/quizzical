@@ -4,10 +4,17 @@ import { useState } from 'react';
 
 export default function Questions({ triviaData, handleNewStart }) {
   const [check, setCheck] = useState(true);
-
+  const [answers, setAnswers] = useState(['', '', '', '', ''])
+  console.log(answers)
   function handleCheck() {
     // TODO check
     setCheck(false);
+  }
+
+  function handleSetAnswers(e) {
+    const myNextAnswers = [...answers];
+    myNextAnswers[e.target.getAttribute('data-question-id')] = e.target.value;
+    setAnswers(myNextAnswers);
   }
   const questions = triviaData.map((item) => {
     return (
@@ -15,8 +22,9 @@ export default function Questions({ triviaData, handleNewStart }) {
         key={item.id}
         id={item.id}
         question={item.question}
-        correctAnswer={item.correct_answer}
         options={item.options}
+        answers={answers}
+        handleSetAnswers={handleSetAnswers}
       />
     );
   });
