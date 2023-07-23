@@ -2,7 +2,10 @@ import Question from './Question.js';
 import Button from './Button.js';
 import { useState } from 'react';
 
-export default function Questions({ triviaData, handleNewStart, correctAnswers }) {
+export default function Questions({
+  triviaData,
+  handleNewStart,
+}) {
   const [check, setCheck] = useState(true);
   const [answers, setAnswers] = useState([
     { answer: '', correct: false },
@@ -11,9 +14,13 @@ export default function Questions({ triviaData, handleNewStart, correctAnswers }
     { answer: '', correct: false },
     { answer: '', correct: false },
   ]);
-  
+  const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
+
   function handleCheck() {
-    // TODO check
+    const correctAnswers = answers.filter(function (item) {
+      return item.correct === true;
+    });
+    setCorrectAnswersCount(correctAnswers.length);
     setCheck(false);
   }
 
@@ -25,7 +32,7 @@ export default function Questions({ triviaData, handleNewStart, correctAnswers }
     const answer = e.target.value;
     // Storing the data in the n-th array element
     myNextAnswers[dataQuestionId].answer = answer;
-    if (answer === correctAnswers[dataQuestionId]) {
+    if (answer === triviaData[dataQuestionId].correct_answer) {
       myNextAnswers[dataQuestionId].correct = true;
     } else {
       myNextAnswers[dataQuestionId].correct = false;
@@ -43,6 +50,7 @@ export default function Questions({ triviaData, handleNewStart, correctAnswers }
         options={item.options}
         answers={answers}
         handleSetAnswers={handleSetAnswers}
+        check={check}
       />
     );
   });
@@ -56,7 +64,10 @@ export default function Questions({ triviaData, handleNewStart, correctAnswers }
           </Button>
         ) : (
           <>
-            <p className='score'>You scored 3/5 correct answers</p>
+            <span className='score'>
+              You scored {correctAnswersCount} correct answer
+              {correctAnswersCount > 1 || correctAnswersCount === 0 ? 's' : ''}
+            </span>
             <Button onClick={handleNewStart} className='quiz__button'>
               Play again
             </Button>

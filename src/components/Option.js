@@ -1,11 +1,17 @@
-import { useState } from 'react';
-
-export default function Option({questionId, option, answers, handleSetAnswers}) {
+export default function Option({
+  questionId,
+  option,
+  checked,
+  answers,
+  handleSetAnswers,
+  check,
+}) {
   // creating a variable with active class if option selected
-  const activeClass = answers[questionId].answer === option ? 'active' : '';
   return (
     <>
-      <label className={'question__label ' + activeClass}>
+      <label
+        className={`question__label ${checked ? 'question__label--active' : ''} ${checked && !check ? (answers[questionId].correct ? 'question__label--correct' : 'question__label--incorrect') : ''}`}
+      >
         <input
           onChange={handleSetAnswers}
           className='question__input'
@@ -13,6 +19,7 @@ export default function Option({questionId, option, answers, handleSetAnswers}) 
           name={'radio-' + questionId}
           value={option}
           data-question-id={questionId}
+          disabled={!check ? true : false}
         />
         {option}
       </label>

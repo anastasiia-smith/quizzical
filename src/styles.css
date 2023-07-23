@@ -1,5 +1,27 @@
 /* reset */
 
+html {
+  font-size: 16px;
+}
+
+@media only screen and (min-width: 720px) {
+  html {
+      font-size: 18px;
+  }
+}
+
+@media only screen and (min-width: 960px) {
+  html {
+      font-size: 20px;
+  }
+}
+
+@media only screen and (min-width: 1240px) {
+  html {
+      font-size: 24px;
+  }
+}
+
 fieldset {
   border: 0;
   padding: 0;
@@ -28,6 +50,7 @@ label {
   text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   font-size: 0.8rem;
   font-weight: 700;
+  margin-right: 0.8rem;
 }
 
 /* project styles */
@@ -36,18 +59,13 @@ body {
   margin: 0;
   width: 100vw;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: #000000;
-  font-size: 16px;
   font-family: 'Inter', sans-serif;
 }
 .quiz {
   max-width: 1200px;
-  max-height: 100vh;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   padding: 2rem;
   background-color: #f5f7fb;
   background-image: url('./images/blue-blob.svg'),
@@ -58,6 +76,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin: auto;
 }
 .quiz.active {
   background-image: url('./images/blue-blob-s.svg'),
@@ -93,11 +112,12 @@ body {
 }
 
 .quiz__questions {
-  overflow: auto;
+  width: 100%;
 }
 
 .quiz__footer {
   margin: 1rem auto;
+  text-align: center;
 }
 
 .question__group {
@@ -123,8 +143,7 @@ body {
   margin-right: 0.8rem;
 }
 
-.question__label:hover,
-.question__label.checked {
+.question__label:has(.question__input:enabled):hover {
   background-color: #d6dbf5;
   border-color: #d6dbf5;
 }
@@ -133,7 +152,28 @@ body {
   display: none;
 }
 
-.question__label.active {
+.question__label.question__label--active {
   background-color: #4d5b9e;
   color: #fff;
+}
+
+.question__label.question__label--correct {
+  background-color: #94D7A2;
+  border-color: #94D7A2;
+  color: #293264;
+}
+
+.question__label.question__label--incorrect {
+  background-color: #F8BCBC;
+  border-color: #F8BCBC;
+  opacity: .5;
+  color: #293264;
+}
+
+.question__label:not(.question__label--correct):has(.question__input:disabled) {
+  opacity: 0.5;
+}
+
+.question__label:has(.question__input:disabled) {
+  cursor: not-allowed;
 }

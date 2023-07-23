@@ -16,7 +16,11 @@ export default function App() {
           id: index,
           question: he.decode(obj.question),
           correct_answer: he.decode(obj.correct_answer),
-          options: shuffle([...obj.incorrect_answers, obj.correct_answer].map(item => he.decode(item))),
+          options: shuffle(
+            [...obj.incorrect_answers, obj.correct_answer].map((item) =>
+              he.decode(item)
+            )
+          ),
         }));
         setTriviaData(extractedCategories);
       });
@@ -32,11 +36,6 @@ export default function App() {
     window.location.reload();
   }
 
-  const correctAnswers = [];
-  triviaData.forEach(element => {
-    correctAnswers.push(element.correct_answer);
-  });
-
   return (
     <main className={`quiz${!start ? ' active' : ''}`}>
       {start ? (
@@ -49,7 +48,10 @@ export default function App() {
         </>
       ) : (
         <>
-          <Questions triviaData={triviaData} handleNewStart={handleNewStart} correctAnswers={correctAnswers}/>
+          <Questions
+            triviaData={triviaData}
+            handleNewStart={handleNewStart}
+          />
         </>
       )}
     </main>
