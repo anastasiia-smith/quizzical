@@ -2,7 +2,7 @@ import Option from './Option';
 
 export default function Questions({id, question, options, answers, handleSetAnswers}) {
   const optionsDisplay = options.map((option, optionIndex) => {
-    return <Option key={optionIndex} questionId={id} index={optionIndex} option={option} answers={answers} handleSetAnswers={e => handleSetAnswers(e)}/>;
+    return <Option key={optionIndex} questionId={id} option={option} answers={answers} handleSetAnswers={e => handleSetAnswers(e)}/>;
   });
   return (
     <fieldset className='question__group'>

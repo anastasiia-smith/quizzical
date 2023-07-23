@@ -6,6 +6,8 @@ import he from 'he';
 export default function App() {
   const [start, setStart] = useState(true);
   const [triviaData, setTriviaData] = useState([]);
+
+  // Setting trivia data based on API fetch
   useEffect(() => {
     fetch('https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple')
       .then((response) => response.json())
@@ -25,6 +27,7 @@ export default function App() {
     setStart(false);
   }
 
+  // Refreshing the window to a new start
   function handleNewStart() {
     window.location.reload();
   }
@@ -57,13 +60,13 @@ function shuffle(array) {
   let currentIndex = array.length,
     randomIndex;
 
-  // While there remain elements to shuffle.
+  // While there remain elements to shuffle
   while (currentIndex !== 0) {
-    // Pick a remaining element.
+    // Pick a remaining element
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
 
-    // And swap it with the current element.
+    // And swap it with the current element
     [array[currentIndex], array[randomIndex]] = [
       array[randomIndex],
       array[currentIndex],

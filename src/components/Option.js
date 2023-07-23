@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
-export default function Option({questionId, index, option, answers, handleSetAnswers}) {
+export default function Option({questionId, option, answers, handleSetAnswers}) {
+  // creating a variable with active class if option selected
   const activeClass = answers[questionId].answer === option ? 'active' : '';
   return (
     <>
