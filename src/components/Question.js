@@ -5,7 +5,7 @@ export default function Questions({
   question,
   options,
   answers,
-  handleSetAnswers,
+  onSelect,
   check,
 }) {
   const optionsDisplay = options.map((option, optionIndex) => {
@@ -16,7 +16,7 @@ export default function Questions({
         option={option}
         checked={answers[id].answer === option}
         answers={answers}
-        handleSetAnswers={(e) => handleSetAnswers(e)}
+        onSelect={(e) => onSelect(e)}
         check={check}
       />
     );

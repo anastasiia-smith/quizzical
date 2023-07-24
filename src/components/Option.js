@@ -3,24 +3,22 @@ export default function Option({
   option,
   checked,
   answers,
-  handleSetAnswers,
+  onSelect,
   check,
 }) {
   return (
     <>
       <label
-        className={`question__label ${
-          checked ? 'question__label--active' : ''
-        } ${
-          checked && !check
-            ? answers[questionId].correct
-              ? 'question__label--correct'
-              : 'question__label--incorrect'
-            : ''
+        className={`question__label ${checked && 'question__label--active'} ${
+          checked &&
+          !check &&
+          (answers[questionId].correct
+            ? 'question__label--correct'
+            : 'question__label--incorrect')
         }`}
       >
         <input
-          onChange={handleSetAnswers}
+          onChange={onSelect}
           className='question__input'
           type='radio'
           name={'radio-' + questionId}

@@ -144,7 +144,7 @@ body {
 }
 
 @media (hover: hover) {
-  .question__label:has(.question__input:enabled):hover {
+  .question__label:has(.question__input:enabled):not(.question__label--active):hover {
     background-color: #d6dbf5;
     border-color: #d6dbf5;
   }
