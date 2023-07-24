@@ -2,10 +2,7 @@ import Question from './Question.js';
 import Button from './Button.js';
 import { useState } from 'react';
 
-export default function Questions({
-  triviaData,
-  handleNewStart,
-}) {
+export default function Questions({ triviaData, handleNewStart }) {
   const [check, setCheck] = useState(true);
   const [answers, setAnswers] = useState([
     { answer: '', correct: false },
@@ -25,19 +22,19 @@ export default function Questions({
   }
 
   function handleSetAnswers(e) {
-    // Creating a new array from previous
+    // Creating a new array from previous.
     const myNextAnswers = [...answers];
-    // Getting the id of question and value of selected option
+    // Getting the id of question and value of selected option.
     const dataQuestionId = e.target.getAttribute('data-question-id');
     const answer = e.target.value;
-    // Storing the data in the n-th array element
+    // Storing the data in the n-th array element.
     myNextAnswers[dataQuestionId].answer = answer;
     if (answer === triviaData[dataQuestionId].correct_answer) {
       myNextAnswers[dataQuestionId].correct = true;
     } else {
       myNextAnswers[dataQuestionId].correct = false;
     }
-    // Setting new state
+    // Setting new state.
     setAnswers(myNextAnswers);
   }
 

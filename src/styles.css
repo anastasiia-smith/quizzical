@@ -6,19 +6,19 @@ html {
 
 @media only screen and (min-width: 720px) {
   html {
-      font-size: 18px;
+    font-size: 18px;
   }
 }
 
 @media only screen and (min-width: 960px) {
   html {
-      font-size: 20px;
+    font-size: 20px;
   }
 }
 
 @media only screen and (min-width: 1240px) {
   html {
-      font-size: 24px;
+    font-size: 24px;
   }
 }
 
@@ -116,7 +116,7 @@ body {
 }
 
 .quiz__footer {
-  margin: 1rem auto;
+  margin: 1rem auto 0;
   text-align: center;
 }
 
@@ -143,9 +143,18 @@ body {
   margin-right: 0.8rem;
 }
 
-.question__label:has(.question__input:enabled):hover {
-  background-color: #d6dbf5;
-  border-color: #d6dbf5;
+@media (hover: hover) {
+  .question__label:has(.question__input:enabled):hover {
+    background-color: #d6dbf5;
+    border-color: #d6dbf5;
+  }
+}
+
+.question__label:has(.question__input:enabled):active,
+.question__label:has(.question__input:enabled):focus {
+  background-color: #4d5b9e;
+  border-color: #4d5b9e;
+  color: #ffffff;
 }
 
 .question__input {
@@ -158,15 +167,15 @@ body {
 }
 
 .question__label.question__label--correct {
-  background-color: #94D7A2;
-  border-color: #94D7A2;
+  background-color: #94d7a2;
+  border-color: #94d7a2;
   color: #293264;
 }
 
 .question__label.question__label--incorrect {
-  background-color: #F8BCBC;
-  border-color: #F8BCBC;
-  opacity: .5;
+  background-color: #f8bcbc;
+  border-color: #f8bcbc;
+  opacity: 0.5;
   color: #293264;
 }
 

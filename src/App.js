@@ -7,7 +7,7 @@ export default function App() {
   const [start, setStart] = useState(true);
   const [triviaData, setTriviaData] = useState([]);
 
-  // Setting trivia data based on API fetch
+  // Setting trivia data based on API fetch.
   useEffect(() => {
     fetch('https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple')
       .then((response) => response.json())
@@ -31,7 +31,7 @@ export default function App() {
     setStart(false);
   }
 
-  // Refreshing the window to a new start
+  // Refreshing the window to a new start.
   function handleNewStart() {
     window.location.reload();
   }
@@ -48,10 +48,7 @@ export default function App() {
         </>
       ) : (
         <>
-          <Questions
-            triviaData={triviaData}
-            handleNewStart={handleNewStart}
-          />
+          <Questions triviaData={triviaData} handleNewStart={handleNewStart} />
         </>
       )}
     </main>
