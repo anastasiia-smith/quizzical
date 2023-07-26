@@ -186,3 +186,8 @@ body {
 .question__label:has(.question__input:disabled) {
   cursor: not-allowed;
 }
+
+.loader {
+  width: 80px;
+  height: 80px;
+}

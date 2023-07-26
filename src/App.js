@@ -1,11 +1,11 @@
-import Questions from './components/Questions.js';
+import { useState } from 'react';
+import useTriviaData from './hooks/useTriviaData';
 import Button from './components/Button.js';
-import { useState, useEffect } from 'react';
-import he from 'he';
+import TriviaContent from './components/TriviaContent.js';
 
 export default function App() {
   const [start, setStart] = useState(true);
-  const [triviaData, setTriviaData] = useState([]);
+  const { triviaData, isLoading, fetchTriviaData } = useTriviaData();
   const [check, setCheck] = useState(true);
   const [answers, setAnswers] = useState([
     { answer: '', correct: false },
@@ -16,27 +16,8 @@ export default function App() {
   ]);
   const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
 
-  // Setting trivia data based on API fetch.
-  useEffect(() => {
-    fetch('https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple')
-      .then((response) => response.json())
-      .then((data) => {
-        const extractedCategories = data.results.map((obj, index) => ({
-          id: index,
-          question: he.decode(obj.question),
-          correct_answer: he.decode(obj.correct_answer),
-          options: shuffle(
-            [...obj.incorrect_answers, obj.correct_answer].map((item) =>
-              he.decode(item)
-            )
-          ),
-        }));
-        setTriviaData(extractedCategories);
-      });
-    return () => setTriviaData([]);
-  }, []);
-
   function handleStart() {
+    fetchTriviaData();
     setStart(false);
   }
 
@@ -67,7 +48,17 @@ export default function App() {
 
   // Refreshing the window to a new start.
   function handleNewStart() {
-    window.location.reload();
+    fetchTriviaData();
+    if(!isLoading){
+      setCheck(true);
+      setAnswers([
+        { answer: '', correct: false },
+        { answer: '', correct: false },
+        { answer: '', correct: false },
+        { answer: '', correct: false },
+        { answer: '', correct: false },
+      ]);
+    setCorrectAnswersCount(0);}
   }
 
   return (
@@ -81,48 +72,18 @@ export default function App() {
           </Button>
         </>
       ) : (
-        <>
-          <Questions triviaData={triviaData} handleSetAnswers={handleSetAnswers} answers={answers} check={check}/>
-          <div className='quiz__footer'>
-            {check ? (
-              <Button onClick={handleCheck} className='quiz__button'>
-                Check answers
-              </Button>
-            ) : (
-              <>
-                <span className='score'>
-                  You scored {correctAnswersCount} correct answer
-                  {correctAnswersCount > 1 || correctAnswersCount === 0
-                    ? 's'
-                    : ''}
-                </span>
-                <Button onClick={handleNewStart} className='quiz__button'>
-                  Play again
-                </Button>
-              </>
-            )}
-          </div>
-        </>
+        <TriviaContent 
+          triviaData={triviaData}
+          handleSetAnswers={handleSetAnswers}
+          answers={answers}
+          check={check}
+          correctAnswersCount={correctAnswersCount}
+          handleCheck={handleCheck}
+          handleNewStart={handleNewStart}
+          isLoading={isLoading}
+        />
       )}
     </main>
   );
 }
 
-function shuffle(array) {
-  let currentIndex = array.length,
-    randomIndex;
-
-  // While there remain elements to shuffle
-  while (currentIndex !== 0) {
-    // Pick a remaining element
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-
-    // And swap it with the current element
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex],
-      array[currentIndex],
-    ];
-  }
-  return array;
-}
