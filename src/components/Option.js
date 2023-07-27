@@ -9,12 +9,14 @@ export default function Option({
   return (
     <>
       <label
-        className={`question__label ${checked && 'question__label--active'} ${
-          checked &&
-          !check &&
-          (answers[questionId].correct
-            ? 'question__label--correct'
-            : 'question__label--incorrect')
+        className={`question__label ${
+          checked ? 'question__label--active' : ''
+        } ${
+          checked && !check
+            ? answers[questionId].correct
+              ? 'question__label--correct'
+              : 'question__label--incorrect'
+            : ''
         }`}
       >
         <input
