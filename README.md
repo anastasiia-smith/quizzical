@@ -1,4 +1,8 @@
-# Final solo react project from scrimba.com
+# Trivia "Quizzical"
+
+Stack: React, opentdb API, he.
+
+## Deploy: https://anastasiia-smith.github.io/quizzical/
 
 # Getting Started with Create React App
 
