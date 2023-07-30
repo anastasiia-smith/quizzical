@@ -15,6 +15,6 @@ export default function Questions({ triviaData, handleSetAnswers, answers, check
     );
   });
   return (
-    <div className='quiz__questions'>{questions}</div>
+    <form className='quiz__questions'>{questions}</form>
   );
 }
