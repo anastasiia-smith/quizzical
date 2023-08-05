@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import useTriviaData from './hooks/useTriviaData';
-import Button from './components/Button.js';
 import TriviaContent from './components/TriviaContent.js';
+import Layout from './components/Layout.js';
+import Start from './components/Start.js';
+import Notfound from './components/Notfound.js';
 
 export default function App() {
   const [start, setStart] = useState(true);
@@ -49,7 +52,7 @@ export default function App() {
   // Refreshing the window to a new start.
   function handleNewStart() {
     fetchTriviaData();
-    if(!isLoading){
+    if (!isLoading) {
       setCheck(true);
       setAnswers([
         { answer: '', correct: false },
@@ -58,32 +61,31 @@ export default function App() {
         { answer: '', correct: false },
         { answer: '', correct: false },
       ]);
-    setCorrectAnswersCount(0);}
+      setCorrectAnswersCount(0);
+    }
   }
 
   return (
-    <main className={`quiz${!start ? ' active' : ''}`}>
-      {start ? (
-        <>
-          <h1 className='quiz__header header'>Quizzical</h1>
-          <p className='quiz__description'>Some description if needed</p>
-          <Button onClick={handleStart} className='quiz__button'>
-            Start quiz
-          </Button>
-        </>
-      ) : (
-        <TriviaContent 
-          triviaData={triviaData}
-          handleSetAnswers={handleSetAnswers}
-          answers={answers}
-          check={check}
-          correctAnswersCount={correctAnswersCount}
-          handleCheck={handleCheck}
-          handleNewStart={handleNewStart}
-          isLoading={isLoading}
-        />
-      )}
-    </main>
+    <Routes>
+      <Route path='/quizzical' element={<Layout start={start} />}>
+        <Route index element={<Start handleStart={handleStart} />}></Route>
+        <Route
+          path='trivia'
+          element={
+            <TriviaContent
+              triviaData={triviaData}
+              handleSetAnswers={handleSetAnswers}
+              answers={answers}
+              check={check}
+              correctAnswersCount={correctAnswersCount}
+              handleCheck={handleCheck}
+              handleNewStart={handleNewStart}
+              isLoading={isLoading}
+            />
+          }
+        ></Route>
+        <Route path='*' element={<Notfound />} />
+      </Route>
+    </Routes>
   );
 }
-
