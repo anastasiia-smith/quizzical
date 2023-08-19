@@ -2,8 +2,6 @@
 
 /* reset */
 
-@import-normalize;
-
 html {
   font-size: 16px;
 }
@@ -52,12 +50,12 @@ body {
   margin: 0;
   width: 100vw;
   height: 100vh;
-  background-color: hsl(220, 43%, 97%);
+  background-color: var(--bg-color);
   font-family: 'Inter', sans-serif;
 }
 
 .header {
-  color: hsl(231, 42%, 28%);
+  color: var(--text-color);
   padding: 0;
   font-family: 'Karla', sans-serif;
   font-weight: bold;
