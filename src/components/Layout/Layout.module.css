@@ -1,9 +1,11 @@
+@import url(../../styles/variables.module.css);
+
 .quiz {
   max-width: 2400px;
   width: 100vw;
   min-height: 100vh;
   padding: 2rem;
-  background-color: #f5f7fb;
+  background-color: var(--bg-color);
   background-image: url('../../images/blue-blob.svg'),
     url('../../images/yellow-blob.svg');
   background-repeat: no-repeat;

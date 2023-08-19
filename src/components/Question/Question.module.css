@@ -1,8 +1,10 @@
+@import url(../../styles/variables.module.css);
+
 .group {
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  border-bottom: 0.04963rem solid #dbdef0;
+  border-bottom: 0.04963rem solid var(--bottom-line-color);
   padding-bottom: 0.95rem;
   margin-bottom: 0.95rem;
   column-gap: 1rem;

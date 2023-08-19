@@ -1,3 +1,5 @@
+@import url(../../styles/variables.module.css);
+
 .header {
   font-size: 1rem;
   font-size: 1.953125rem;
@@ -6,7 +8,7 @@
 }
 
 .description {
-  color: #293264;
+  color: var(--text-color);
   font-weight: normal;
   font-size: 1rem;
   margin: 0.5rem 0 30px 0;

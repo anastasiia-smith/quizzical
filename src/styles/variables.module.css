@@ -1,0 +1,11 @@
+:root {
+  --white-color: hsl(0, 0%, 100%);
+  --bg-color: hsl(220, 43%, 97%);
+  --header-color: hsl(231, 42%, 28%);
+  --text-color: hsl(231, 42%, 28%);
+  --label-color: hsl(230, 34%, 46%);
+  --bottom-line-color:	hsl(231, 41%, 90%);
+  --background-color: hsl(230, 61%, 90%);
+  --correct-color: 	hsl(133, 46%, 71%);
+  --incorrect-color: hsl(0, 81%, 85%);
+}

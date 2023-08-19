@@ -1,6 +1,8 @@
+@import url(../../styles/variables.module.css);
+
 .label {
   border-radius: 7.942px;
-  border: 0.794px solid #4d5b9e;
+  border: 0.794px solid var(--label-color);
   padding: 0.25rem 0.5rem;
   font-size: 0.64rem;
 }
@@ -9,16 +11,16 @@
   .label:has(.input:enabled):not(
       .active
     ):hover {
-    background-color: #d6dbf5;
-    border-color: #d6dbf5;
+    background-color: var(--background-color);
+    border-color: var(--background-color);
   }
 }
 
 .label:has(.input:enabled):active,
 .label:has(.input:enabled):focus {
-  background-color: #4d5b9e;
-  border-color: #4d5b9e;
-  color: #ffffff;
+  background-color: var(--label-color);
+  border-color: var(--label-color);
+  color: var(--white-color);
 }
 
 .input {
@@ -30,21 +32,21 @@
 }
 
 .label.active {
-  background-color: #4d5b9e;
-  color: #fff;
+  background-color: var(--label-color);
+  color: var(--white-color);
 }
 
 .label.correct {
-  background-color: #94d7a2;
-  border-color: #94d7a2;
-  color: #293264;
+  background-color: var(--correct-color);
+  border-color: var(--correct-color);
+  color: var(--text-color);
 }
 
 .label.incorrect {
-  background-color: #f8bcbc;
-  border-color: #f8bcbc;
+  background-color: var(--incorrect-color);
+  border-color: var(--incorrect-color);
   opacity: 0.5;
-  color: #293264;
+  color: var(--text-color);
 }
 
 .label:not(.correct):has(.input:disabled) {

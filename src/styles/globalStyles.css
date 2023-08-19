@@ -1,3 +1,5 @@
+@import url(./variables.module.css);
+
 /* reset */
 
 @import-normalize;
@@ -50,12 +52,12 @@ body {
   margin: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #f5f7fb;
+  background-color: hsl(220, 43%, 97%);
   font-family: 'Inter', sans-serif;
 }
 
 .header {
-  color: #293264;
+  color: hsl(231, 42%, 28%);
   padding: 0;
   font-family: 'Karla', sans-serif;
   font-weight: bold;
