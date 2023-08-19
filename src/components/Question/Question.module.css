@@ -1,0 +1,15 @@
+.group {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  border-bottom: 0.04963rem solid #dbdef0;
+  padding-bottom: 0.95rem;
+  margin-bottom: 0.95rem;
+  column-gap: 1rem;
+}
+
+.header {
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+  flex-basis: 100%;
+}

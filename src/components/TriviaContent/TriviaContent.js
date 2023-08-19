@@ -1,5 +1,6 @@
-import Questions from './Questions.js';
-import Button from './Button.js';
+import Questions from '../Questions/Questions.js';
+import Button from '../Button/Button.js';
+import styles from './TriviaContent.module.css'
 
 export default function TriviaContent({
   triviaData,
@@ -16,7 +17,7 @@ export default function TriviaContent({
       {isLoading ? (
         <>
           <svg
-            className='loader'
+            className={styles.loader}
             xmlns='http://www.w3.org/2000/svg'
             x='0px'
             y='0px'
@@ -47,20 +48,20 @@ export default function TriviaContent({
             answers={answers}
             check={check}
           />
-          <div className='quiz__footer'>
+          <div className={styles.footer}>
             {check ? (
-              <Button onClick={handleCheck} className='quiz__button'>
+              <Button onClick={handleCheck}>
                 Check answers
               </Button>
             ) : (
               <>
-                <span className='score'>
+                <span className={styles.score}>
                   You scored {correctAnswersCount} correct answer
                   {correctAnswersCount > 1 || correctAnswersCount === 0
                     ? 's'
                     : ''}
                 </span>
-                <Button onClick={handleNewStart} className='quiz__button'>
+                <Button onClick={handleNewStart}>
                   Play again
                 </Button>
               </>

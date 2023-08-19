@@ -1,3 +1,5 @@
+import styles from './Option.module.css';
+
 export default function Option({
   questionId,
   option,
@@ -9,19 +11,19 @@ export default function Option({
   return (
     <>
       <label
-        className={`question__label ${
-          checked ? 'question__label--active' : ''
+        className={`${styles.label} ${
+          checked ? `${styles.active}` : ''
         } ${
           checked && !check
             ? answers[questionId].correct
-              ? 'question__label--correct'
-              : 'question__label--incorrect'
+              ? `${styles.correct}`
+              : `${styles.incorrect}`
             : ''
         }`}
       >
         <input
           onChange={onSelect}
-          className='question__input'
+          className={styles.input}
           type='radio'
           name={'radio-' + questionId}
           value={option}

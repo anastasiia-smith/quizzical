@@ -1,0 +1,33 @@
+.quiz {
+  max-width: 2400px;
+  width: 100vw;
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: #f5f7fb;
+  background-image: url('../../images/blue-blob.svg'),
+    url('../../images/yellow-blob.svg');
+  background-repeat: no-repeat;
+  background-position: left bottom, right top;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: auto;
+}
+
+.quiz.active {
+  background-image: url('../../images/blue-blob-s.svg'),
+    url('../../images/yellow-blob-s.svg');
+}
+
+@media only screen and (min-width: 1240px) {
+  .quiz {
+    padding: 2rem 6rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .quiz {
+    min-height: 100dvh;
+  }
+}

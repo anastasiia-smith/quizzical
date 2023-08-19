@@ -1,0 +1,56 @@
+.label {
+  border-radius: 7.942px;
+  border: 0.794px solid #4d5b9e;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.64rem;
+}
+
+@media (hover: hover) {
+  .label:has(.input:enabled):not(
+      .active
+    ):hover {
+    background-color: #d6dbf5;
+    border-color: #d6dbf5;
+  }
+}
+
+.label:has(.input:enabled):active,
+.label:has(.input:enabled):focus {
+  background-color: #4d5b9e;
+  border-color: #4d5b9e;
+  color: #ffffff;
+}
+
+.input {
+  width: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.label.active {
+  background-color: #4d5b9e;
+  color: #fff;
+}
+
+.label.correct {
+  background-color: #94d7a2;
+  border-color: #94d7a2;
+  color: #293264;
+}
+
+.label.incorrect {
+  background-color: #f8bcbc;
+  border-color: #f8bcbc;
+  opacity: 0.5;
+  color: #293264;
+}
+
+.label:not(.correct):has(.input:disabled) {
+  opacity: 0.5;
+}
+
+.label:has(.input:disabled) {
+  cursor: not-allowed;
+}

@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import useTriviaData from './hooks/useTriviaData';
-import TriviaContent from './components/TriviaContent.js';
-import Layout from './components/Layout.js';
-import Start from './components/Start.js';
-import Notfound from './components/Notfound.js';
+import TriviaContent from './components/TriviaContent/TriviaContent.js';
+import Layout from './components/Layout/Layout.js';
+import Start from './components/Start/Start.js';
+import Notfound from './components/Nonfound/Notfound.js';
 
 export default function App() {
   const [start, setStart] = useState(true);

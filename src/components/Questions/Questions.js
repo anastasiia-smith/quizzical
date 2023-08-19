@@ -1,6 +1,12 @@
-import Question from './Question.js';
+import Question from '../Question/Question.js';
+import styles from './Questions.module.css';
 
-export default function Questions({ triviaData, handleSetAnswers, answers, check }) {
+export default function Questions({
+  triviaData,
+  handleSetAnswers,
+  answers,
+  check,
+}) {
   const questions = triviaData.map((item) => {
     return (
       <Question
@@ -14,7 +20,5 @@ export default function Questions({ triviaData, handleSetAnswers, answers, check
       />
     );
   });
-  return (
-    <form className='quiz__questions'>{questions}</form>
-  );
+  return <form className={styles.questions}>{questions}</form>;
 }

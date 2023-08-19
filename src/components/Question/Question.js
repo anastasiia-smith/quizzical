@@ -1,4 +1,5 @@
-import Option from './Option.js';
+import Option from '../Option/Option.js';
+import styles from './Question.module.css';
 
 export default function Questions({
   id,
@@ -22,8 +23,8 @@ export default function Questions({
     );
   });
   return (
-    <fieldset className='question__group'>
-      <legend className='question__header header'>{question}</legend>
+    <fieldset className={styles.group}>
+      <legend className={`${styles.header} header`}>{question}</legend>
       {optionsDisplay}
     </fieldset>
   );
