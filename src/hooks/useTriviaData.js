@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
+import shuffleArray from '../utils/shuffleArray'
 
 import he from 'he';
 
-const useTriviaData = () => {
+export default function useTriviaData() {
   const [triviaData, setTriviaData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -15,7 +16,7 @@ const useTriviaData = () => {
           id: index,
           question: he.decode(obj.question),
           correct_answer: he.decode(obj.correct_answer),
-          options: shuffle(
+          options: shuffleArray(
             [...obj.incorrect_answers, obj.correct_answer].map((item) =>
               he.decode(item)
             )
@@ -36,24 +37,3 @@ const useTriviaData = () => {
 
   return { triviaData,  isLoading, fetchTriviaData };
 };
-
-export default useTriviaData;
-
-function shuffle(array) {
-  let currentIndex = array.length,
-    randomIndex;
-
-  // While there remain elements to shuffle
-  while (currentIndex !== 0) {
-    // Pick a remaining element
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-
-    // And swap it with the current element
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex],
-      array[currentIndex],
-    ];
-  }
-  return array;
-}
