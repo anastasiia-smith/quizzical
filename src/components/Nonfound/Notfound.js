@@ -1,3 +1,3 @@
 export default function Notfound() {
-  return <div>Not found...</div>;
+  return <h1 className='header'>Not found...</h1>;
 }
