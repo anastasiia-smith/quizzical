@@ -6,8 +6,8 @@
   <body>
     <script>
       const path = window.location.pathname;
-      const newPath = path.replace(/\/quizzical\/?/, '/');
-      window.location.replace(`/quizzical/index.html#${newPath}`);
+      const newPath = path.replace(/\/quizzical/, '');
+      window.location.replace(`/quizzical/${newPath}`);
     </script>
   </body>
 </html>
