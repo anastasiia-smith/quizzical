@@ -42,6 +42,7 @@ export default function useTriviaData() {
       fetchTriviaData();
     }
     return () => setTriviaData([]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return { triviaData,  isLoading, fetchAgain };
