@@ -4,7 +4,8 @@ import shuffleArray from '../utils/shuffleArray'
 import he from 'he';
 
 export default function useTriviaData() {
-  const [triviaData, setTriviaData] = useState([]);
+  const storedTriviaData = JSON.parse(localStorage.getItem('triviaData')) || [];
+  const [triviaData, setTriviaData] = useState(storedTriviaData);
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchTriviaData = () => {
@@ -22,6 +23,7 @@ export default function useTriviaData() {
             )
           ),
         }));
+        localStorage.setItem('triviaData', JSON.stringify(extractedCategories));
         setTriviaData(extractedCategories);
         setIsLoading(false);
       })
@@ -31,9 +33,16 @@ export default function useTriviaData() {
       });
   };
 
+  const fetchAgain = () => {
+    fetchTriviaData();
+  };
+
   useEffect(() => {
+    if (storedTriviaData.length === 0) {
+      fetchTriviaData();
+    }
     return () => setTriviaData([]);
   }, []);
 
-  return { triviaData,  isLoading, fetchTriviaData };
+  return { triviaData,  isLoading, fetchAgain };
 };

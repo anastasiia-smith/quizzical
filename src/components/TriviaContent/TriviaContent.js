@@ -1,17 +1,62 @@
+import { useState } from 'react';
 import Questions from '../Questions/Questions.js';
 import Button from '../Button/Button.js';
 import styles from './TriviaContent.module.css'
+import useTriviaData from '../../hooks/useTriviaData.js'
 
-export default function TriviaContent({
-  triviaData,
-  handleSetAnswers,
-  answers,
-  check,
-  correctAnswersCount,
-  handleCheck,
-  handleNewStart,
-  isLoading,
-}) {
+export default function TriviaContent() {
+  const [check, setCheck] = useState(true);
+  const [answers, setAnswers] = useState([
+    { answer: '', correct: false },
+    { answer: '', correct: false },
+    { answer: '', correct: false },
+    { answer: '', correct: false },
+    { answer: '', correct: false },
+  ]);
+  const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
+  const { triviaData, isLoading, fetchAgain } = useTriviaData();
+
+  function handleCheck() {
+    const correctAnswers = answers.filter(function (item) {
+      return item.correct === true;
+    });
+    setCorrectAnswersCount(correctAnswers.length);
+    setCheck(false);
+    localStorage.removeItem('triviaData');
+  }
+
+  function handleSetAnswers(e) {
+    // Creating a new array from previous.
+    const myNextAnswers = [...answers];
+    // Getting the id of question and value of selected option.
+    const dataQuestionId = e.target.getAttribute('data-question-id');
+    const answer = e.target.value;
+    // Storing the data in the n-th array element.
+    myNextAnswers[dataQuestionId].answer = answer;
+    if (answer === triviaData[dataQuestionId].correct_answer) {
+      myNextAnswers[dataQuestionId].correct = true;
+    } else {
+      myNextAnswers[dataQuestionId].correct = false;
+    }
+    // Setting new state.
+    setAnswers(myNextAnswers);
+  }
+
+  // Fetching new data when play again pushed.
+  function handleNewStart() {
+    fetchAgain();
+    if (!isLoading) {
+      setCheck(true);
+      setAnswers([
+        { answer: '', correct: false },
+        { answer: '', correct: false },
+        { answer: '', correct: false },
+        { answer: '', correct: false },
+        { answer: '', correct: false },
+      ]);
+      setCorrectAnswersCount(0);
+    }
+  }
   return (
     <>
       {isLoading ? (
