@@ -13,7 +13,7 @@ export default function App() {
   }
   return (
     <Routes>
-      <Route path='/quizzical' element={<Layout start={start} />}>
+      <Route path='/' element={<Layout start={start} />}>
         <Route index element={<Start handleStart={handleStart} />}></Route>
         <Route
           path='trivia'
