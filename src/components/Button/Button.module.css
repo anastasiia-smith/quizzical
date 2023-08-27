@@ -13,3 +13,8 @@
 .button:hover {
   background-color: hsla(230, 34%, 46%, 90%);
 }
+
+.button:disabled {
+  background-color: hsla(230, 34%, 46%, 30%);
+  cursor: not-allowed;
+}

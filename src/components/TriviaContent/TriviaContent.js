@@ -15,6 +15,7 @@ export default function TriviaContent() {
   ]);
   const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
   const { triviaData, isLoading, fetchAgain } = useTriviaData();
+  const areAllAnswersFilled = answers.every(item => item.answer !== '');
 
   function handleCheck() {
     const correctAnswers = answers.filter(function (item) {
@@ -95,7 +96,7 @@ export default function TriviaContent() {
           />
           <div className={styles.footer}>
             {check ? (
-              <Button onClick={handleCheck}>
+              <Button onClick={handleCheck} disabled={!areAllAnswersFilled}>
                 Check answers
               </Button>
             ) : (
