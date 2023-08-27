@@ -2,6 +2,8 @@
 
 Video demo: https://youtu.be/ERzY-swfxig
 
+Description: The app is fetching 5 random questions for a user and provides a score based on answered questions.
+
 Stack: React, opentdb API, he.
 
 ## Deploy: https://anastasiia-smith.github.io/quizzical/
