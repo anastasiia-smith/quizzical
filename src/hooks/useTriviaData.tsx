@@ -1,42 +1,38 @@
 import { useState, useEffect } from 'react';
-import shuffleArray from '../utils/shuffleArray'
+import shuffleArray from '../utils/shuffleArray';
 
 import he from 'he';
-
-export interface Obj {
-  question: string,
-  correct_answer: string,
-}
-
-export interface ExtractedCategories {
-  id: number,
-  question: string,
-  correct_answer: string,
-  options(array: []): [],
-}
+import { ExtractedCategories, TriviaData } from '../types/types';
 
 const useTriviaData = () => {
   const localStorageData: string | null = localStorage.getItem('triviaData');
-  const storedTriviaData: [] = localStorageData ? JSON.parse(localStorageData) : [];
-  console.log('anaii', storedTriviaData);
-  const [triviaData, setTriviaData] = useState(storedTriviaData);
-  const [isLoading, setIsLoading] = useState(false);
+  const storedTriviaData: ExtractedCategories[] | [] = localStorageData
+    ? JSON.parse(localStorageData)
+    : [];
+  const [triviaData, setTriviaData] = useState<ExtractedCategories[] | []>(storedTriviaData);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const fetchTriviaData = () => {
     setIsLoading(true);
     fetch('https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple')
       .then((response) => response.json())
-      .then((data) => {
-        const extractedCategories: ExtractedCategories = data.results.map((obj: Obj, index: number) => ({
-          id: index,
-          question: he.decode(obj.question),
-          correct_answer: he.decode(obj.correct_answer),
-          options: shuffleArray(
-            [...obj.incorrect_answers, obj.correct_answer].map((item) =>
-              he.decode(item)
-            )
-          ),
-        }));
+      .then((data: TriviaData) => {
+        const extractedCategories: ExtractedCategories[] = data.results.map(
+          (results, index: number) => {
+            const answers: string[] = [
+              ...results.incorrect_answers,
+              results.correct_answer,
+            ];
+            const decodedAnswers = answers.map((item) => he.decode(item));
+            const options: string[] = shuffleArray(decodedAnswers);
+            return {
+              id: index,
+              question: he.decode(results.question),
+              correct_answer: he.decode(results.correct_answer),
+              options: options,
+            };
+          }
+        );
         localStorage.setItem('triviaData', JSON.stringify(extractedCategories));
         setTriviaData(extractedCategories);
         setIsLoading(false);
@@ -56,10 +52,10 @@ const useTriviaData = () => {
       fetchTriviaData();
     }
     return () => setTriviaData([]);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return { triviaData,  isLoading, fetchAgain };
+  return { triviaData, isLoading, fetchAgain };
 };
 
 export default useTriviaData;

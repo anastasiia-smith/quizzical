@@ -1,15 +1,11 @@
+import React from 'react';
 import Option from '../Option/Option';
 import styles from './Question.module.css';
+import { Props } from '../../types/types';
 
-export default function Questions({
-  id,
-  question,
-  options,
-  answers,
-  onSelect,
-  check,
-}) {
-  const optionsDisplay = options.map((option, optionIndex) => {
+export default function Questions(props: Props) {
+  const { id, question, options, answers, onSelect, check } = props;
+  const optionsDisplay = options.map((option: string, optionIndex: number) => {
     return (
       <Option
         key={optionIndex}
@@ -17,7 +13,7 @@ export default function Questions({
         option={option}
         checked={answers[id].answer === option}
         answers={answers}
-        onSelect={(e) => onSelect(e)}
+        onSelect={(e: any) => onSelect(e)}
         check={check}
       />
     );
