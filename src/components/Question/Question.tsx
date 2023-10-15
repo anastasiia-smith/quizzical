@@ -1,4 +1,4 @@
-import Option from '../Option/Option.js';
+import Option from '../Option/Option';
 import styles from './Question.module.css';
 
 export default function Questions({

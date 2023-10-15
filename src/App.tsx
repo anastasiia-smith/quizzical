@@ -1,9 +1,10 @@
+import React from 'react';
 import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import TriviaContent from './components/TriviaContent/TriviaContent.js';
-import Layout from './components/Layout/Layout.js';
-import Start from './components/Start/Start.js';
-import Notfound from './components/Nonfound/Notfound.js';
+import TriviaContent from './components/TriviaContent/TriviaContent';
+import Layout from './components/Layout/Layout';
+import Start from './components/Start/Start';
+import Notfound from './components/Nonfound/Notfound';
 
 export default function App() {
   const [start, setStart] = useState(true);

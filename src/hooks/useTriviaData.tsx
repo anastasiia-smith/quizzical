@@ -3,8 +3,22 @@ import shuffleArray from '../utils/shuffleArray'
 
 import he from 'he';
 
-export default function useTriviaData() {
-  const storedTriviaData = JSON.parse(localStorage.getItem('triviaData')) || [];
+export interface Obj {
+  question: string,
+  correct_answer: string,
+}
+
+export interface ExtractedCategories {
+  id: number,
+  question: string,
+  correct_answer: string,
+  options(array: []): [],
+}
+
+const useTriviaData = () => {
+  const localStorageData: string | null = localStorage.getItem('triviaData');
+  const storedTriviaData: [] = localStorageData ? JSON.parse(localStorageData) : [];
+  console.log('anaii', storedTriviaData);
   const [triviaData, setTriviaData] = useState(storedTriviaData);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -13,7 +27,7 @@ export default function useTriviaData() {
     fetch('https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple')
       .then((response) => response.json())
       .then((data) => {
-        const extractedCategories = data.results.map((obj, index) => ({
+        const extractedCategories: ExtractedCategories = data.results.map((obj: Obj, index: number) => ({
           id: index,
           question: he.decode(obj.question),
           correct_answer: he.decode(obj.correct_answer),
@@ -47,3 +61,5 @@ export default function useTriviaData() {
 
   return { triviaData,  isLoading, fetchAgain };
 };
+
+export default useTriviaData;

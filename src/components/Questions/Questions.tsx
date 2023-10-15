@@ -1,4 +1,4 @@
-import Question from '../Question/Question.js';
+import Question from '../Question/Question';
 import styles from './Questions.module.css';
 
 export default function Questions({

@@ -1,6 +1,6 @@
-export default function shuffleArray(array) {
-  let currentIndex = array.length,
-    randomIndex;
+export default function shuffleArray(array: []): [] {
+  let currentIndex: number = array.length,
+      randomIndex: number;
 
   // While there remain elements to shuffle
   while (currentIndex !== 0) {

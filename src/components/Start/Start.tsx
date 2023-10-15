@@ -1,8 +1,14 @@
-import Button from '../Button/Button.js';
+import React from 'react'
+import Button from '../Button/Button';
 import { Link } from 'react-router-dom';
 import styles from './Start.module.css'
 
-export default function Start({ handleStart }) {
+export interface Props {
+  handleStart: () => void,
+}
+
+const Start: React.FC<Props> = (props) => {
+  const { handleStart } = props;
   return (
     <>
       <h1 className={`${styles.header} header`}>Quizzical</h1>
@@ -15,3 +21,5 @@ export default function Start({ handleStart }) {
     </>
   );
 }
+
+export default Start;

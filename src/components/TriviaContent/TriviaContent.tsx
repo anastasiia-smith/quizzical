@@ -1,8 +1,9 @@
+import React from 'react';
 import { useState } from 'react';
-import Questions from '../Questions/Questions.js';
-import Button from '../Button/Button.js';
+import Questions from '../Questions/Questions';
+import Button from '../Button/Button';
 import styles from './TriviaContent.module.css'
-import useTriviaData from '../../hooks/useTriviaData.js'
+import useTriviaData from '../../hooks/useTriviaData'
 
 export default function TriviaContent() {
   const [check, setCheck] = useState(true);
@@ -26,7 +27,7 @@ export default function TriviaContent() {
     localStorage.removeItem('triviaData');
   }
 
-  function handleSetAnswers(e) {
+  function handleSetAnswers(e: { target: { getAttribute: (arg0: string) => any; value: any; }; }) {
     // Creating a new array from previous.
     const myNextAnswers = [...answers];
     // Getting the id of question and value of selected option.
